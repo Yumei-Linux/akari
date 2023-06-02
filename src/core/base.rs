@@ -3,11 +3,10 @@ use crate::utils::exec::exec;
 
 const WGET_LISTS: &str = "https://www.linuxfromscratch.org/lfs/downloads/stable-systemd/wget-list";
 const MD5SUMS: &str = "https://www.linuxfromscratch.org/lfs/downloads/stable-systemd/md5sums";
-const WITH_USER: &str = "su - yumei -c ";
 
 pub struct Base {
-    root_path: PathBuf,
-    sources_path: PathBuf
+    pub root_path: PathBuf,
+    pub sources_path: PathBuf
 }
 
 impl Base {
@@ -37,11 +36,6 @@ impl Base {
         exec(format!("pushd {}; md5sum -c md5sums; popd", sources_path_str));
         exec(format!("chown root:root {}/*", sources_path_str));
     }
-
-    fn yumei_exec(&self, command: String) {
-        exec(format!("{} {}", WITH_USER, command));
-    }
-
 
     fn bootstrap(&self) {
         let path = self.root_path.as_path()
