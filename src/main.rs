@@ -21,4 +21,5 @@ fn main() {
     let builder = Builder::from_base(base);
     builder.setup_builders();
     builder.run("pass1");
+    builder.run("pass2");
 }
