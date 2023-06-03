@@ -28,7 +28,7 @@ impl Builder {
     pub fn run(&self, pass: &str) {
         let mut entry_script = PathBuf::from(&self.sources_path);
         entry_script.push("builders");
-        entry_script.push("pass1");
+        entry_script.push(pass);
         entry_script.push("main.sh");
 
         if !entry_script.is_file() {
